@@ -1,4 +1,4 @@
-# JSONPlaceholder
+# JSONPlaceholder [![CircleCI](https://circleci.com/gh/cypress-io/jsonplaceholder/tree/master.svg?style=svg)](https://circleci.com/gh/cypress-io/jsonplaceholder/tree/master)
 
 `JSONPlaceholder` is a simple fake REST API for testing and prototyping, powered by [JSON Server](https://github.com/typicode/json-server).
 
