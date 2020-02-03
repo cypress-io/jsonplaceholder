@@ -16,6 +16,10 @@
       line-height: 1.5;
     }
 
+    pre {
+      text-align: left;
+    }
+
     a {
       color: #1e87f0;
       text-decoration: none;
@@ -172,6 +176,15 @@
         +
         <a href="https://github.com/typicode/lowdb">LowDB</a>
       </p>
+
+
+      <pre>
+        <code id="example" class="javascript">fetch('https://jsonplaceholder.cypress.io/todos/1')
+  .then(response => response.json())
+  .then(json => console.log(json))</code>
+      </pre>
+      <p><button id="run-button">Try it</button></p>
+      <pre><code id="result" class="json"></code></pre>
     </div>
   </div>
 
@@ -184,6 +197,40 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    // Highlight result element
+    var result = document.getElementById("result");
+    hljs.highlightBlock(result);
+
+    // Run example
+    var runButton = document.getElementById("run-button");
+    runButton.onclick = function() {
+      var runMessage = document.getElementById("run-message");
+
+      // Hide or disable things during API call
+      runButton.disabled = true;
+      result.style.opacity = 0;
+
+      fetch("https://jsonplaceholder.cypress.io/todos/1")
+        .then(response => response.json())
+        .then(json => {
+          var str = JSON.stringify(json, null, "\t");
+
+          // Format result
+          result.innerHTML = str
+            .replace(/\n/g, "<br/>")
+            .replace(/\\n/g, " ")
+            .replace(/\t/g, "&nbsp;&nbsp;");
+
+          hljs.highlightBlock(result);
+
+          // Show and enable things after API call
+          runButton.disabled = false;
+          result.style.opacity = 1;
+        });
+    };
+  </script>
 </body>
 
 </html>
